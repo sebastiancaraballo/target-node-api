@@ -29,9 +29,9 @@ describe('UserRouter', () => {
         .get('/users');
       expect(users.length).to.equal(1);
       const user = users[0];
-      expect(user.firstName).to.equal(fullUser.firstName);
-      expect(user.lastName).to.equal(fullUser.lastName);
+      expect(user.userName).to.equal(fullUser.userName);
       expect(user.email).to.equal(fullUser.email);
+      expect(user.gender).to.equal(fullUser.gender);
       expect(user.id).to.not.undefined;
     });
   });
@@ -44,9 +44,9 @@ describe('UserRouter', () => {
         ));
       const { body: { user } } = await request(app)
         .post('/users');
-      expect(user.firstName).to.equal(fullUser.firstName);
-      expect(user.lastName).to.equal(fullUser.lastName);
+      expect(user.userName).to.equal(fullUser.userName);
       expect(user.email).to.equal(fullUser.email);
+      expect(user.gender).to.equal(fullUser.gender);
       expect(user.id).to.not.undefined;
     });
   });

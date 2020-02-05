@@ -7,16 +7,16 @@ describe('UserService', () => {
   describe('create', () => {
     it('Creates a valid user', async () => {
       const user = await userService.create(fullUser);
-      expect(user.firstName).to.equal(fullUser.firstName);
-      expect(user.lastName).to.equal(fullUser.lastName);
+      expect(user.userName).to.equal(fullUser.userName);
       expect(user.email).to.equal(fullUser.email);
+      expect(user.gender).to.equal(fullUser.gender);
       expect(user.id).to.not.undefined;
     });
 
     it('Fails if missing params', async () => {
       try {
         await userService.create({
-          firstName: fullUser.firstName,
+          email: fullUser.email,
         });
       } catch (error) {
         expect((error as ValidationError).message).to.not.undefined;
@@ -27,17 +27,17 @@ describe('UserService', () => {
   describe('update', () => {
     it('Updates a user', async () => {
       const user = await userService.create(fullUser);
-      const updatedUser = await userService.update(user.id, { firstName: 'test' });
-      expect(updatedUser.firstName).to.equal('test');
-      expect(updatedUser.lastName).to.equal(user.lastName);
-      expect(updatedUser.email).to.equal(user.email);
+      const updatedUser = await userService.update(user.id, { email: 'test2@test.com' });
+      expect(updatedUser.email).to.equal('test2@test.com');
+      expect(updatedUser.userName).to.equal(user.userName);
+      expect(updatedUser.gender).to.equal(user.gender);
       expect(updatedUser.id).to.equal(user.id);
     });
 
     it('Fails if invalid params', async () => {
       try {
         await userService.create({
-          firstName: 10,
+          email: 10,
         });
       } catch (error) {
         expect((error as ValidationError).message).to.not.undefined;
@@ -49,9 +49,9 @@ describe('UserService', () => {
     it('find a user', async () => {
       const user = await userService.create(fullUser);
       const found = await userService.findOne(user.id);
-      expect(found.firstName).to.equal(user.firstName);
-      expect(found.lastName).to.equal(user.lastName);
+      expect(found.userName).to.equal(user.userName);
       expect(found.email).to.equal(user.email);
+      expect(found.gender).to.equal(user.gender);
       expect(found.id).to.equal(user.id);
     });
 
@@ -64,7 +64,7 @@ describe('UserService', () => {
   describe('find', () => {
     it('returns a list of users', async () => {
       const user = await userService.create(fullUser);
-      const found = await userService.find({ firstName: fullUser.firstName });
+      const found = await userService.find({ userName: fullUser.userName });
       expect(found).to.not.empty;
     });
   });
