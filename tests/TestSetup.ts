@@ -21,16 +21,13 @@ const setupDb = async () => {
   });
 };
 
-mocha.before(async () => {
+mocha.beforeEach(async () => {
   chai.use(sinonChai);
   await setupDb();
 });
 
-mocha.afterEach(() => {
+mocha.afterEach(async () => {
   sinon.restore();
   sinon.reset();
-});
-
-mocha.after(async () => {
-  await connection.close();
+  connection.close();
 });

@@ -1,7 +1,11 @@
 import faker from 'faker';
 
+let genders = [ 'female' , 'male' ];
+
 export const fullUser = {
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
+  userName: faker.internet.userName(),
   email: faker.internet.email().toString(),
+  gender: faker.random.arrayElement(genders),
+  password: 'password',
+  passwordConfirmation: 'password'
 };
