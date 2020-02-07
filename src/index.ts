@@ -1,5 +1,7 @@
+import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import express from 'express';
+import session from 'express-session';
 import 'reflect-metadata';
 import { Connection } from 'typeorm';
 import createConnection from './db';
@@ -17,6 +19,9 @@ const runApp = (connection: Connection) => {
   try {
     app.set('view engine', 'pug');
     app.use(cors);
+    app.use(cookieParser());
+    app.use(session({ secret: 'secret' }));
+    require('./config/passport.js')(app);
     app.use('/api/v1', apiRouter);
     app.use(errorMiddleware);
     app.listen(port, () => {

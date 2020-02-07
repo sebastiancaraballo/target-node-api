@@ -1,4 +1,5 @@
 import express from 'express';
+import passport from 'passport';
 import asyncMiddleware from '../middlewares/AsyncMiddleware';
 import serializeUser from './UserSerializer';
 import userService, { UserService } from './UserService';
@@ -24,6 +25,11 @@ export class UserRouter {
     this.router.post('/', asyncMiddleware(async (req, res) => {
       const user = await this.service.create(req.body);
       res.send({ user: serializeUser(user) });
+    }));
+
+    this.router.post('/signIn', passport.authenticate('local', {
+      successRedirect: '/',
+      failureRedirect: '/',
     }));
   }
 }
