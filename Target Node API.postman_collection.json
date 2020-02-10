@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "POST /users",
+			"name": "Sign up",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -41,7 +41,7 @@
 			"response": []
 		},
 		{
-			"name": "GET /users",
+			"name": "Get all users",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -73,6 +73,42 @@
 						"api",
 						"v1",
 						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign in",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"test\",\n\t\"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/users/signIn",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"signIn"
 					]
 				}
 			},
