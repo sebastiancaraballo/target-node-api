@@ -42,9 +42,6 @@
 		},
 		{
 			"name": "Get all users",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -55,15 +52,6 @@
 						"value": "application/json"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"firstName\": \"Test\",\n\t\"lastName\": \"Test\",\n\t\"email\": \"test@test.com\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "{{url}}/api/v1/users",
 					"host": [
@@ -109,6 +97,39 @@
 						"v1",
 						"users",
 						"signIn"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all topics",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/v1/topics",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"topics"
+					],
+					"query": [
+						{
+							"key": "label",
+							"value": "Travel",
+							"disabled": true
+						}
 					]
 				}
 			},
